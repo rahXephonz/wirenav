@@ -133,7 +133,8 @@ rendering. Providers are swappable: snap-web (default), snap-device (future),
 - TypeScript strict mode everywhere; ESM only.
 - `ts-morph` for AST work in extract-react-navigation (drop to the raw compiler API only
   where ts-morph's performance is the bottleneck — measure first).
-- `vitest` for tests, `tsup` for builds, `changesets` for versioning/publishing.
+- `vitest` for tests, `tsup` for builds, `release-please` (conventional-commit driven)
+  for versioning/changelogs/releases.
 - Node ≥ 20. No Bun/Deno-specific APIs.
 
 ## Testing convention (fixture + golden file)
