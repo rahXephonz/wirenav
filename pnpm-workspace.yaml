@@ -1,0 +1,5 @@
+packages:
+  - "packages/*"
+  - "apps/*"
+# fixtures/* are intentionally NOT workspace members: they are source-only
+# miniature apps that are never installed (see CLAUDE.md).

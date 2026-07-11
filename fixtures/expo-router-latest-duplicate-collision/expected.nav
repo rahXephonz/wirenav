@@ -1,0 +1,10 @@
+wirenav-format: 1
+router: expo-router@5
+
+navigator app [stack] file=app/_layout.tsx
+  destination /home file=app/(a)/home.tsx
+  destination /home file=app/(b)/home.tsx
+
+diagnostics
+  WN201 duplicate route /home app/(a)/home.tsx
+  WN201 duplicate route /home app/(b)/home.tsx

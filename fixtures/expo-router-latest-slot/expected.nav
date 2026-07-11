@@ -1,0 +1,6 @@
+wirenav-format: 1
+router: expo-router@5
+
+navigator app [slot] file=app/_layout.tsx
+  destination / file=app/index.tsx
+  destination /about file=app/about.tsx

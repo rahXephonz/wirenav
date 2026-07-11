@@ -1,0 +1,9 @@
+wirenav-format: 1
+router: expo-router@5
+
+navigator app [stack] file=app/_layout.tsx
+  destination / file=app/index.tsx
+  destination /blog/[...slug] file=app/blog/[...slug].tsx
+    param slug: string[]
+  destination /user/[id] file=app/user/[id].tsx
+    param id: string

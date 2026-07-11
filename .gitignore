@@ -1,0 +1,14 @@
+# Added by code-review-graph
+.code-review-graph/
+
+# Dependencies & build output
+node_modules/
+dist/
+*.tsbuildinfo
+
+# Test / tooling
+coverage/
+.vitest/
+
+# OS
+.DS_Store

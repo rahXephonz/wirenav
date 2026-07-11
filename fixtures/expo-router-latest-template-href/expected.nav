@@ -1,0 +1,13 @@
+wirenav-format: 1
+router: expo-router@5
+
+navigator app [stack] file=app/_layout.tsx
+  destination / file=app/index.tsx
+  destination /user/[id] file=app/user/[id].tsx
+    param id: string
+
+edges inferred
+  / -> /user/[id] app/index.tsx
+
+diagnostics
+  WN202 unresolvable navigation target app/index.tsx

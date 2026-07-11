@@ -1,0 +1,8 @@
+wirenav-format: 1
+router: expo-router@5
+
+navigator app [unknown] file=app/_layout.tsx
+  destination / file=app/index.tsx
+
+diagnostics
+  WN203 unrecognized navigator layout; kind set to unknown app/_layout.tsx

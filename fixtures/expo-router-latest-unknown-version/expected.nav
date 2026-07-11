@@ -1,0 +1,8 @@
+wirenav-format: 1
+router: expo-router@99
+
+navigator app [stack] file=app/_layout.tsx
+  destination / file=app/index.tsx
+
+diagnostics
+  WN104 unrecognized expo-router version; using latest profile package.json

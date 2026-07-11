@@ -1,0 +1,8 @@
+wirenav-format: 1
+router: expo-router@5
+
+navigator app [stack] file=app/_layout.tsx
+  destination / file=app/index.tsx
+  navigator (marketing) [stack] file=app/(marketing)/_layout.tsx
+    destination /about file=app/(marketing)/about.tsx
+    destination /deal file=app/(marketing)/(promo)/deal.tsx

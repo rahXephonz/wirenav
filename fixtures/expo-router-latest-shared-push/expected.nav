@@ -1,0 +1,9 @@
+wirenav-format: 1
+router: expo-router@5
+
+navigator app [stack] file=app/_layout.tsx
+  destination / file=app/index.tsx
+  destination /settings file=app/settings.tsx
+
+edges inferred
+  @shared/src/BackButton.tsx -> /settings src/BackButton.tsx
