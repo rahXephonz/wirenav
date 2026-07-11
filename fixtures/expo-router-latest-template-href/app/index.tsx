@@ -1,11 +1,11 @@
-import { useRouter } from 'expo-router';
-import { Text } from 'react-native';
+import { useRouter } from "expo-router";
+import { Text } from "react-native";
 
 export default function Index() {
   const router = useRouter();
-  const id = '1';
-  const seg = 'a';
-  const rest = 'b';
+  const id = "1";
+  const seg = "a";
+  const rest = "b";
   return (
     <Text
       onPress={() => {

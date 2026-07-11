@@ -1,0 +1,17 @@
+{
+  "// note": "IDE-only config for the source-only fixtures. Never installed, never part of CI typecheck (packages typecheck themselves). Exists so editors resolve the ambient stubs in env.d.ts instead of flagging unresolved react-native/expo-router imports.",
+  "compilerOptions": {
+    "noEmit": true,
+    "skipLibCheck": true,
+    "target": "ESNext",
+    "module": "ESNext",
+    "moduleResolution": "Bundler",
+    "lib": ["ESNext", "DOM"],
+    "jsx": "preserve",
+    "types": [],
+    "allowJs": true,
+    "strict": false,
+    "noImplicitAny": false
+  },
+  "include": ["**/*.ts", "**/*.tsx"]
+}

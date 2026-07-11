@@ -13,7 +13,7 @@
 </p>
 
 <p align="center">
-  <em>Inspired by <a href="https://github.com/skydoves/compose-navigation-graph">skydoves/compose-nav-graph</a>, rebuilt around the constraints of the RN ecosystem (no KSP, no headless renderer).</em>
+  <em>Inspired by <a href="https://github.com/skydoves/compose-nav-graph">skydoves/compose-nav-graph</a>, rebuilt around the constraints of the RN ecosystem (no KSP, no headless renderer).</em>
 </p>
 
 ## Why

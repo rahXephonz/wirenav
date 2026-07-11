@@ -6,9 +6,6 @@ pnpm-lock.yaml
 # Golden text artifacts — byte-exact, never reformat
 **/*.nav
 
-# Source-only fixtures are hand-authored test inputs; keep them verbatim
-fixtures
-
 # Authored docs / instructions kept in their own hand-formatting
 .claude
 CLAUDE.md

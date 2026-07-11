@@ -1,3 +1,3 @@
 export function GET(): Response {
-  return new Response('ok');
+  return new Response("ok");
 }
