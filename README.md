@@ -1,12 +1,20 @@
-# wirenav
+<p align="center">
+  <img src=".github/assets/logo.svg" alt="" width="56" height="56" />
+</p>
 
-**Static analysis toolkit that extracts, visualizes, and diff-checks React Native
-navigation graphs** — Expo Router & React Navigation. Recover your app's navigation
-structure _without running the app_, commit it to your repo as a deterministic text
-file, and fail CI when the navigation surface drifts.
+<h1 align="center">wirenav</h1>
 
-Inspired by [skydoves/compose-nav-graph](https://github.com/skydoves/compose-navigation-graph),
-rebuilt around the constraints of the RN ecosystem (no KSP, no headless renderer).
+<p align="center">
+  Static analysis toolkit that extracts, visualizes, and diff-checks React Native navigation graphs — Expo Router &amp; React Navigation. Recovers your app's navigation structure without running the app, commits it as a deterministic <code>.nav</code> file, and fails CI when the navigation surface drifts.
+  <br />
+  <a href="packages/core"><strong>@wirenav/core</strong></a>
+  &nbsp;·&nbsp;
+  <a href=".claude/skills/wirenav-dev/references/nav-format.md"><strong>.nav format spec</strong></a>
+</p>
+
+<p align="center">
+  <em>Inspired by <a href="https://github.com/skydoves/compose-navigation-graph">skydoves/compose-nav-graph</a>, rebuilt around the constraints of the RN ecosystem (no KSP, no headless renderer).</em>
+</p>
 
 ## Why
 
