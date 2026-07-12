@@ -1,0 +1,21 @@
+{
+  "name": "example-latest",
+  "version": "0.0.0",
+  "private": true,
+  "description": "Dogfood Expo Router app on the latest SDK. Real app layout; extraction is static so the nav drift-gate runs without installing node_modules (snap-web previews add the install later).",
+  "main": "expo-router/entry",
+  "scripts": {
+    "nav:dump": "wirenav dump --out wirenav.nav",
+    "nav:check": "wirenav check --baseline wirenav.nav",
+    "nav:render": "wirenav render --out wirenav.html"
+  },
+  "dependencies": {
+    "expo": "~53.0.0",
+    "expo-router": "~5.0.0",
+    "react": "19.0.0",
+    "react-native": "0.79.5"
+  },
+  "devDependencies": {
+    "wirenav": "workspace:*"
+  }
+}

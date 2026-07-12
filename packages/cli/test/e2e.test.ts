@@ -8,7 +8,7 @@
  * + a drift report) → render (expect a standalone HTML file). Everything runs in an
  * os.tmpdir copy so the repo tree is never touched.
  */
-import { execFileSync } from "node:child_process";
+import { execFileSync, spawnSync } from "node:child_process";
 import { cpSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { dirname, join } from "node:path";
@@ -19,18 +19,17 @@ const here = dirname(fileURLToPath(import.meta.url));
 const repoRoot = join(here, "..", "..", "..");
 const cliDist = join(here, "..", "dist", "index.js");
 const fixtureSrc = join(repoRoot, "fixtures", "expo-router-latest-nested-groups");
+const exampleApp = join(repoRoot, "apps", "example-latest");
 
 let work: string;
 
-/** Run the built binary. Returns {status, stdout, stderr}; never throws on non-zero exit. */
+/**
+ * Run the built binary. Captures BOTH streams regardless of exit code (diagnostics go to
+ * stderr even on a successful exit 0, so we must not drop it).
+ */
 function wirenav(args: string[]): { status: number; stdout: string; stderr: string } {
-  try {
-    const stdout = execFileSync("node", [cliDist, ...args], { encoding: "utf8" });
-    return { status: 0, stdout, stderr: "" };
-  } catch (err) {
-    const e = err as { status?: number; stdout?: string; stderr?: string };
-    return { status: e.status ?? 1, stdout: e.stdout ?? "", stderr: e.stderr ?? "" };
-  }
+  const res = spawnSync("node", [cliDist, ...args], { encoding: "utf8" });
+  return { status: res.status ?? 1, stdout: res.stdout ?? "", stderr: res.stderr ?? "" };
 }
 
 beforeAll(() => {
@@ -140,5 +139,43 @@ describe("wirenav CLI end-to-end (nested-groups fixture)", () => {
     expect(res.status).toBe(2);
     expect(res.stderr).toContain("v0.2");
     rmSync(rn, { recursive: true, force: true });
+  });
+});
+
+/**
+ * Dogfood drift-gate: the committed apps/example-latest/wirenav.nav must match a fresh
+ * static extraction of that app. Runs against the REAL repo tree (not a tmp copy) so it
+ * fails CI if the app's routes change without a baseline regen. Extraction is static, so
+ * this needs no node_modules install (the app's Expo deps are irrelevant here).
+ */
+describe("dogfood drift-gate (apps/example-latest)", () => {
+  const baseline = join(exampleApp, "wirenav.nav");
+
+  it("check on the committed baseline reports no drift (exit 0)", () => {
+    const res = wirenav(["check", exampleApp, "--baseline", baseline]);
+    expect(res.status).toBe(0);
+    expect(res.stdout).toContain("no navigation drift");
+    // The intentional runtime-navigation case must keep surfacing as a diagnostic.
+    expect(res.stderr).toContain("WN202");
+  });
+
+  it("render produces a standalone graph covering every route, both edge kinds", () => {
+    const out = join(work, "example.html");
+    const res = wirenav(["render", exampleApp, "--out", out]);
+    expect(res.status).toBe(0);
+    const html = readFileSync(out, "utf8");
+    for (const id of [
+      "app/index.tsx",
+      "app/+not-found.tsx",
+      "app/user/[id].tsx",
+      "app/blog/[...slug].tsx",
+      "app/(tabs)/feed.tsx",
+      "app/(marketing)/(promo)/deal.tsx",
+    ]) {
+      expect(html, `missing ${id}`).toContain(id);
+    }
+    expect(html).toContain('"kind":"declared"');
+    expect(html).toContain('"kind":"inferred"');
+    expect(html).not.toMatch(/src="https?:/);
   });
 });

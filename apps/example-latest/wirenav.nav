@@ -1,0 +1,28 @@
+wirenav-format: 1
+router: expo-router@5
+
+navigator app [stack] file=app/_layout.tsx
+  destination / file=app/index.tsx
+  destination /+not-found file=app/+not-found.tsx [special:not-found]
+  destination /blog/[...slug] file=app/blog/[...slug].tsx
+    param slug: string[]
+  destination /settings file=app/settings.tsx
+  destination /user/[id] file=app/user/[id].tsx
+    param id: string
+  navigator (marketing) [stack] file=app/(marketing)/_layout.tsx
+    destination /about file=app/(marketing)/about.tsx
+    destination /deal file=app/(marketing)/(promo)/deal.tsx
+  navigator (tabs) [tabs] file=app/(tabs)/_layout.tsx
+    destination /feed file=app/(tabs)/feed.tsx
+    destination /profile file=app/(tabs)/profile.tsx
+
+edges declared
+  / -> /settings app/index.tsx
+  /feed -> /profile app/(tabs)/feed.tsx
+
+edges inferred
+  / -> /user/[id] app/index.tsx
+  @shared/components/BackButton.tsx -> / components/BackButton.tsx
+
+diagnostics
+  WN202 unresolvable navigation target app/index.tsx

@@ -1,0 +1,9 @@
+{
+  "expo": {
+    "name": "wirenav example (latest)",
+    "slug": "wirenav-example-latest",
+    "scheme": "wirenavexample",
+    "newArchEnabled": true,
+    "plugins": ["expo-router"]
+  }
+}

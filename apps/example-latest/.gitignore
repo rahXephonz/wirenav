@@ -1,0 +1,9 @@
+# Installed deps + Expo caches (install is deferred to the snap-web milestone; the nav
+# drift-gate runs on source alone).
+node_modules/
+.expo/
+expo-env.d.ts
+
+# Generated wirenav artifacts. The .nav BASELINE is committed on purpose (it is the
+# drift-gate contract); the rendered HTML is a build artifact and is not.
+wirenav.html
