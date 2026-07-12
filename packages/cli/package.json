@@ -1,0 +1,31 @@
+{
+  "name": "wirenav",
+  "version": "0.0.0",
+  "description": "wirenav CLI — detect router → extract → dump | check | render.",
+  "type": "module",
+  "bin": {
+    "wirenav": "./dist/index.js"
+  },
+  "files": [
+    "dist"
+  ],
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "build": "tsup src/index.ts --format esm --clean",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run"
+  },
+  "dependencies": {
+    "@wirenav/core": "workspace:*",
+    "@wirenav/extract-expo-router": "workspace:*",
+    "@wirenav/render-html": "workspace:*"
+  },
+  "devDependencies": {
+    "@types/node": "^22.9.0",
+    "tsup": "^8.3.0",
+    "typescript": "^5.6.3",
+    "vitest": "^2.1.4"
+  }
+}
